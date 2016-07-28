@@ -126,6 +126,11 @@ bool SudokuSolver::solve(int row, int col)
    return false;
 }
 
+bool SudokuSolver::checkUserSolution()
+{
+    return true;
+}
+
 void SudokuSolver::reset()
 {
     for(int i = 0 ; i < 9; i++)

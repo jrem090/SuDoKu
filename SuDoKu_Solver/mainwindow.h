@@ -18,11 +18,13 @@ public:
     ~MainWindow();
     SudokuSolver solver;
     //bool isValidEntry(int row, column);
+    bool user_mode;
 
 public slots:
     void solveSudoku();
     void clearPuzzle();
     void tableEdit(int row, int column);
+    void changeMode();
 
 private:
     Ui::MainWindow *ui;
