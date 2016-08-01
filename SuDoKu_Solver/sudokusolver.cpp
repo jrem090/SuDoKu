@@ -128,6 +128,49 @@ bool SudokuSolver::solve(int row, int col)
 
 bool SudokuSolver::checkUserSolution()
 {
+    for(int i = 0; i < 9 ; i++)
+    {
+        int checksum_row = 0;
+        int checksum_col = 0;
+
+        for(int j = 0; j < 9; j++)
+        {
+            if(user[i][j]<0 || user[i][j] > 9)
+            {
+                return false;
+            }
+
+            if(user[j][i]<0 || user[j][i] > 9)
+            {
+                return false;
+            }
+
+            checksum_row += user[i][j];
+            checksum_col += user[j][i];
+        }
+        if(checksum_col != 45 || checksum_col != 45)
+        {
+            return false;
+        }
+    }
+
+    for(int i = 0; i < 3; i++)
+    {
+        for(int j = 0; j < 3; j++)
+        {
+            int checksum_box = 0;
+            for(int k = 0; k < 3; k++)
+            {
+                for(int l = 0; l < 3; l++)
+                {
+                    checksum_box += user[k+ (i*3)][l + (j*3)];
+                }
+            }
+            if(checksum_box != 45)
+                return false;
+        }
+    }
+
     return true;
 }
 

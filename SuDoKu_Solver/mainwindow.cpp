@@ -54,63 +54,79 @@ MainWindow::~MainWindow()
 
 void MainWindow::solveSudoku()
 {
-    QString t;
-    if(solver.solve(0,0))
+    if(!user_mode)
     {
-        //std::cout << "IT SHOULD BE SOLVED\n";
-        /*for(int i = 0; i < 9; i ++)
+        QString t;
+        if(solver.solve(0,0))
         {
-            for(int j = 0; j<9; j++)
+            //std::cout << "IT SHOULD BE SOLVED\n";
+            /*for(int i = 0; i < 9; i ++)
             {
-                std::cout << &solver.solution[i][j] << " ";
-            }
-             std::cout << std::endl;
-        }*/
-
-        for(int i = 0; i<9; i++)
-        {
-          for(int j =0; j< 9; j++)
-          {
-
-              t.setNum(solver.solution[i][j]);
-              //ui->tableWidget->item(i,j)->setData(11,t);
-              if(solver.input[i][j]==0)
+                for(int j = 0; j<9; j++)
+                {
+                    std::cout << &solver.solution[i][j] << " ";
+                }
+                 std::cout << std::endl;
+            }*/
+    
+            for(int i = 0; i<9; i++)
+            {
+              for(int j =0; j< 9; j++)
               {
-                  QFont font = ui->tableWidget->item(i,j)->font();
-                  font.setBold(false);
-                  ui->tableWidget->item(i,j)->setFont(font);
+    
+                  t.setNum(solver.solution[i][j]);
+                  //ui->tableWidget->item(i,j)->setData(11,t);
+                  if(solver.input[i][j]==0)
+                  {
+                      QFont font = ui->tableWidget->item(i,j)->font();
+                      font.setBold(false);
+                      ui->tableWidget->item(i,j)->setFont(font);
+                  }
+                ui->tableWidget->item(i,j)->setData(Qt::DisplayRole,t);
+                //ui->tableWidget->item(i,j)->setData(Qt::UserRole, solver.solution[i][j]);
               }
-            ui->tableWidget->item(i,j)->setData(Qt::DisplayRole,t);
-            //ui->tableWidget->item(i,j)->setData(Qt::UserRole, solver.solution[i][j]);
-          }
+            }
+            ui->label->setText(QString("Sudoku Solved"));
+            ui->tableWidget->repaint();
+            //write solved
         }
-        ui->label->setText(QString("Sudoku Solved"));
-        ui->tableWidget->repaint();
-        //write solved
+        else
+        {
+             ui->label->setText(QString("Unable to Solve Sudoku"));
+            //write error
+        }
     }
     else
     {
-         ui->label->setText(QString("Unable to Solve Sudoku"));
-        //write error
+        if(solver.checkUserSolution())
+        {
+               ui->label->setText(QString("You Solved The Puzzle!"));
+        }
+        else
+        {
+            ui->label->setText(QString("Puzzle Was Not Solved Correctly"));
+        }
     }
-
 }
 
 void MainWindow::clearPuzzle()
 {
-    QString t = "";
-    solver.reset();
-    for(int i = 0; i<9; i++)
+    if(!user_mode)
     {
-      for(int j =0; j< 9; j++)
-      {
-          QFont font = ui->tableWidget->item(i,j)->font();
-          font.setBold(true);
-           ui->tableWidget->item(i,j)->setData(Qt::DisplayRole,t);
-           ui->tableWidget->item(i,j)->setFont(font);
-      }
+        QString t = "";
+        solver.reset();
+        for(int i = 0; i<9; i++)
+        {
+          for(int j =0; j< 9; j++)
+          {
+              QFont font = ui->tableWidget->item(i,j)->font();
+              font.setBold(true);
+               ui->tableWidget->item(i,j)->setData(Qt::DisplayRole,t);
+               ui->tableWidget->item(i,j)->setFont(font);
+          }
+        }
+         ui->label->setText(QString("Cleared Puzzle"));
     }
-     ui->label->setText(QString("Cleared Puzzle"));
 }
 
 void MainWindow::changeMode()
@@ -137,35 +153,59 @@ void MainWindow::changeMode()
  */
 void MainWindow::tableEdit(int row, int column)
 {
-
-    try
+    if(!user_mode)
     {
-        int test_int = ui->tableWidget->item(row,column)->data(0).toInt();
-
-        if(test_int > 0 && test_int <= 9)
+        try
         {
-            if(solver.checkBox(row,column,test_int)&&
-                    solver.checkHorizontal(row,column,test_int)&&
-                    solver.checkVertical(row,column,test_int))
+            int test_int = ui->tableWidget->item(row,column)->data(0).toInt();
+
+            if(test_int > 0 && test_int <= 9)
             {
-                solver.setInput(row,column,test_int);
-                ui->label->setText(QString(""));
+                if(solver.checkBox(row,column,test_int)&&
+                        solver.checkHorizontal(row,column,test_int)&&
+                        solver.checkVertical(row,column,test_int))
+                {
+                    solver.setInput(row,column,test_int);
+                    ui->label->setText(QString(""));
+                }
+                else
+                {
+                    QString t = "";
+                    ui->tableWidget->item(row,column)->setData(Qt::DisplayRole,t);
+                    if(test_int != 0)
+                       ui->label->setText(QString("Invalid Entry. Broken Puzzle."));
+                }
             }
             else
             {
                 QString t = "";
                 ui->tableWidget->item(row,column)->setData(Qt::DisplayRole,t);
                 if(test_int != 0)
-                   ui->label->setText(QString("Invalid Entry. Broken Puzzle."));
+                   ui->label->setText(QString("Invalid Entry. Enter an integer value 1-9."));
             }
+        }
+        catch(int e){}
+    }
+    else
+    {
+        //check if trying to overwrite given value
+        if(solver.solution[row][column]==0)
+        {
+            int test_int = ui->tableWidget->item(row,column)->data(0).toInt();
+            solver.setInput(row,column,test_int);
+            //ui->
+            QFont font = ui->tableWidget->item(row,column)->font();
+            font.setBold(false);
+            ui->tableWidget->item(row,column)->setFont(font);
+            ui->label->setText(QString(""));
         }
         else
         {
-            QString t = "";
-            ui->tableWidget->item(row,column)->setData(Qt::DisplayRole,t);
-            if(test_int != 0)
-               ui->label->setText(QString("Invalid Entry. Enter an integer value 1-9."));
+             ui->label->setText(QString("Stop trying to overwrite a starting value, Dinghus"));
+             QString t = "";
+             t.setNum(solver.solution[row][column]);
+             ui->tableWidget->item(row,column)->setData(Qt::DisplayRole,t);
+
         }
     }
-    catch(int e){}
 }
