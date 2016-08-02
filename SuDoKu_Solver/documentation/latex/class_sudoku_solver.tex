@@ -1,0 +1,230 @@
+\hypertarget{class_sudoku_solver}{}\section{Sudoku\+Solver Class Reference}
+\label{class_sudoku_solver}\index{Sudoku\+Solver@{Sudoku\+Solver}}
+
+
+The \hyperlink{class_sudoku_solver}{Sudoku\+Solver} class This method is responsible for managing the details and methods of Sudoku.  
+
+
+
+
+{\ttfamily \#include $<$sudokusolver.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_sudoku_solver_a4bf48e09a67caff942c166ac70e42fc9}{Sudoku\+Solver} ()
+\item 
+bool \hyperlink{class_sudoku_solver_a14e6df202ad279fbafaf7f348f53c535}{check\+Box} (int row, int col, int test\+\_\+int)
+\begin{DoxyCompactList}\small\item\em check\+Box This method tests that there are no other copies of test\+\_\+int in the 3x3 box surrounding (row,col) \end{DoxyCompactList}\item 
+bool \hyperlink{class_sudoku_solver_a9312f9906262defb7ae6f4d1a56fda00}{check\+Horizontal} (int row, int col, int test\+\_\+int)
+\begin{DoxyCompactList}\small\item\em check\+Horizontal This method checks that there are no instances of test\+\_\+int in the specified row, ignoring the col position \end{DoxyCompactList}\item 
+bool \hyperlink{class_sudoku_solver_aecc3f72bcd6c4ba906fc20c43bd54579}{check\+Vertical} (int row, int col, int test\+\_\+int)
+\begin{DoxyCompactList}\small\item\em check\+Vertical This method checks that there are no instances of test\+\_\+int in the specified column(col), ignoring the row position \end{DoxyCompactList}\item 
+void \hyperlink{class_sudoku_solver_ad58cafeeb1cc40f57f37e5fac00ea40b}{set\+Input} (int row, int col, int value)
+\begin{DoxyCompactList}\small\item\em set\+Input This method sets the the value at row,col for all arrays to the specified value \end{DoxyCompactList}\item 
+bool \hyperlink{class_sudoku_solver_a9e2c13564d2bf647733c49cc89963553}{solve} (int row, int col)
+\begin{DoxyCompactList}\small\item\em solve This method uses a recursive algorithm to solve a Sudoku problem given valid inputs \end{DoxyCompactList}\item 
+void \hyperlink{class_sudoku_solver_aa86631e9684d9e5b3d77865f06323311}{reset} ()
+\begin{DoxyCompactList}\small\item\em reset This method resets all arrays \end{DoxyCompactList}\item 
+void \hyperlink{class_sudoku_solver_a84ba9bd3646b7357543f4499cdf4ba0f}{generate\+Puzzle} ()
+\begin{DoxyCompactList}\small\item\em generate\+Puzzle This method generates a Sudoku Puzzle \end{DoxyCompactList}\item 
+bool \hyperlink{class_sudoku_solver_a95305521706322fdd6d50340c6da2216}{check\+User\+Solution} ()
+\begin{DoxyCompactList}\small\item\em check\+User\+Solution This method checks if the user solution is a valid solution \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{class_sudoku_solver_a5623374dbdea1eb6aaa857521e8ff6c2}{input} \mbox{[}9\mbox{]}\mbox{[}9\mbox{]}
+\item 
+int \hyperlink{class_sudoku_solver_a1aca7fe43c36b2eb07a1357f76c728d4}{solution} \mbox{[}9\mbox{]}\mbox{[}9\mbox{]}
+\item 
+int \hyperlink{class_sudoku_solver_a6e2f7ae7438f42979bcbd9cee385b24c}{user} \mbox{[}9\mbox{]}\mbox{[}9\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{class_sudoku_solver}{Sudoku\+Solver} class This method is responsible for managing the details and methods of Sudoku. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Sudoku\+Solver@{Sudoku\+Solver}!Sudoku\+Solver@{Sudoku\+Solver}}
+\index{Sudoku\+Solver@{Sudoku\+Solver}!Sudoku\+Solver@{Sudoku\+Solver}}
+\subsubsection[{\texorpdfstring{Sudoku\+Solver()}{SudokuSolver()}}]{\setlength{\rightskip}{0pt plus 5cm}Sudoku\+Solver\+::\+Sudoku\+Solver (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_sudoku_solver_a4bf48e09a67caff942c166ac70e42fc9}{}\label{class_sudoku_solver_a4bf48e09a67caff942c166ac70e42fc9}
+
+
+\subsection{Member Function Documentation}
+\index{Sudoku\+Solver@{Sudoku\+Solver}!check\+Box@{check\+Box}}
+\index{check\+Box@{check\+Box}!Sudoku\+Solver@{Sudoku\+Solver}}
+\subsubsection[{\texorpdfstring{check\+Box(int row, int col, int test\+\_\+int)}{checkBox(int row, int col, int test_int)}}]{\setlength{\rightskip}{0pt plus 5cm}bool Sudoku\+Solver\+::check\+Box (
+\begin{DoxyParamCaption}
+\item[{int}]{row, }
+\item[{int}]{col, }
+\item[{int}]{test\+\_\+int}
+\end{DoxyParamCaption}
+)}\hypertarget{class_sudoku_solver_a14e6df202ad279fbafaf7f348f53c535}{}\label{class_sudoku_solver_a14e6df202ad279fbafaf7f348f53c535}
+
+
+check\+Box This method tests that there are no other copies of test\+\_\+int in the 3x3 box surrounding (row,col) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & \\
+\hline
+{\em col} & \\
+\hline
+{\em test\+\_\+int} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns true if test\+\_\+int fuffils check box rules 
+\end{DoxyReturn}
+\index{Sudoku\+Solver@{Sudoku\+Solver}!check\+Horizontal@{check\+Horizontal}}
+\index{check\+Horizontal@{check\+Horizontal}!Sudoku\+Solver@{Sudoku\+Solver}}
+\subsubsection[{\texorpdfstring{check\+Horizontal(int row, int col, int test\+\_\+int)}{checkHorizontal(int row, int col, int test_int)}}]{\setlength{\rightskip}{0pt plus 5cm}bool Sudoku\+Solver\+::check\+Horizontal (
+\begin{DoxyParamCaption}
+\item[{int}]{row, }
+\item[{int}]{col, }
+\item[{int}]{test\+\_\+int}
+\end{DoxyParamCaption}
+)}\hypertarget{class_sudoku_solver_a9312f9906262defb7ae6f4d1a56fda00}{}\label{class_sudoku_solver_a9312f9906262defb7ae6f4d1a56fda00}
+
+
+check\+Horizontal This method checks that there are no instances of test\+\_\+int in the specified row, ignoring the col position 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & \\
+\hline
+{\em col} & \\
+\hline
+{\em test\+\_\+int} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns true that test\+\_\+int satisfies the horizontal Sudoku rule 
+\end{DoxyReturn}
+\index{Sudoku\+Solver@{Sudoku\+Solver}!check\+User\+Solution@{check\+User\+Solution}}
+\index{check\+User\+Solution@{check\+User\+Solution}!Sudoku\+Solver@{Sudoku\+Solver}}
+\subsubsection[{\texorpdfstring{check\+User\+Solution()}{checkUserSolution()}}]{\setlength{\rightskip}{0pt plus 5cm}bool Sudoku\+Solver\+::check\+User\+Solution (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_sudoku_solver_a95305521706322fdd6d50340c6da2216}{}\label{class_sudoku_solver_a95305521706322fdd6d50340c6da2216}
+
+
+check\+User\+Solution This method checks if the user solution is a valid solution 
+
+\begin{DoxyReturn}{Returns}
+returns true if the user solution is valid/correct 
+\end{DoxyReturn}
+\index{Sudoku\+Solver@{Sudoku\+Solver}!check\+Vertical@{check\+Vertical}}
+\index{check\+Vertical@{check\+Vertical}!Sudoku\+Solver@{Sudoku\+Solver}}
+\subsubsection[{\texorpdfstring{check\+Vertical(int row, int col, int test\+\_\+int)}{checkVertical(int row, int col, int test_int)}}]{\setlength{\rightskip}{0pt plus 5cm}bool Sudoku\+Solver\+::check\+Vertical (
+\begin{DoxyParamCaption}
+\item[{int}]{row, }
+\item[{int}]{col, }
+\item[{int}]{test\+\_\+int}
+\end{DoxyParamCaption}
+)}\hypertarget{class_sudoku_solver_aecc3f72bcd6c4ba906fc20c43bd54579}{}\label{class_sudoku_solver_aecc3f72bcd6c4ba906fc20c43bd54579}
+
+
+check\+Vertical This method checks that there are no instances of test\+\_\+int in the specified column(col), ignoring the row position 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & \\
+\hline
+{\em col} & \\
+\hline
+{\em test\+\_\+int} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns true that test\+\_\+int satisfies the vertical Sudoku rule 
+\end{DoxyReturn}
+\index{Sudoku\+Solver@{Sudoku\+Solver}!generate\+Puzzle@{generate\+Puzzle}}
+\index{generate\+Puzzle@{generate\+Puzzle}!Sudoku\+Solver@{Sudoku\+Solver}}
+\subsubsection[{\texorpdfstring{generate\+Puzzle()}{generatePuzzle()}}]{\setlength{\rightskip}{0pt plus 5cm}void Sudoku\+Solver\+::generate\+Puzzle (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_sudoku_solver_a84ba9bd3646b7357543f4499cdf4ba0f}{}\label{class_sudoku_solver_a84ba9bd3646b7357543f4499cdf4ba0f}
+
+
+generate\+Puzzle This method generates a Sudoku Puzzle 
+
+\index{Sudoku\+Solver@{Sudoku\+Solver}!reset@{reset}}
+\index{reset@{reset}!Sudoku\+Solver@{Sudoku\+Solver}}
+\subsubsection[{\texorpdfstring{reset()}{reset()}}]{\setlength{\rightskip}{0pt plus 5cm}void Sudoku\+Solver\+::reset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_sudoku_solver_aa86631e9684d9e5b3d77865f06323311}{}\label{class_sudoku_solver_aa86631e9684d9e5b3d77865f06323311}
+
+
+reset This method resets all arrays 
+
+\index{Sudoku\+Solver@{Sudoku\+Solver}!set\+Input@{set\+Input}}
+\index{set\+Input@{set\+Input}!Sudoku\+Solver@{Sudoku\+Solver}}
+\subsubsection[{\texorpdfstring{set\+Input(int row, int col, int value)}{setInput(int row, int col, int value)}}]{\setlength{\rightskip}{0pt plus 5cm}void Sudoku\+Solver\+::set\+Input (
+\begin{DoxyParamCaption}
+\item[{int}]{row, }
+\item[{int}]{col, }
+\item[{int}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{class_sudoku_solver_ad58cafeeb1cc40f57f37e5fac00ea40b}{}\label{class_sudoku_solver_ad58cafeeb1cc40f57f37e5fac00ea40b}
+
+
+set\+Input This method sets the the value at row,col for all arrays to the specified value 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & \\
+\hline
+{\em col} & \\
+\hline
+{\em value} & \\
+\hline
+\end{DoxyParams}
+\index{Sudoku\+Solver@{Sudoku\+Solver}!solve@{solve}}
+\index{solve@{solve}!Sudoku\+Solver@{Sudoku\+Solver}}
+\subsubsection[{\texorpdfstring{solve(int row, int col)}{solve(int row, int col)}}]{\setlength{\rightskip}{0pt plus 5cm}bool Sudoku\+Solver\+::solve (
+\begin{DoxyParamCaption}
+\item[{int}]{row, }
+\item[{int}]{col}
+\end{DoxyParamCaption}
+)}\hypertarget{class_sudoku_solver_a9e2c13564d2bf647733c49cc89963553}{}\label{class_sudoku_solver_a9e2c13564d2bf647733c49cc89963553}
+
+
+solve This method uses a recursive algorithm to solve a Sudoku problem given valid inputs 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & \\
+\hline
+{\em col} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns true if the solution is valid 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\index{Sudoku\+Solver@{Sudoku\+Solver}!input@{input}}
+\index{input@{input}!Sudoku\+Solver@{Sudoku\+Solver}}
+\subsubsection[{\texorpdfstring{input}{input}}]{\setlength{\rightskip}{0pt plus 5cm}int Sudoku\+Solver\+::input\mbox{[}9\mbox{]}\mbox{[}9\mbox{]}}\hypertarget{class_sudoku_solver_a5623374dbdea1eb6aaa857521e8ff6c2}{}\label{class_sudoku_solver_a5623374dbdea1eb6aaa857521e8ff6c2}
+\index{Sudoku\+Solver@{Sudoku\+Solver}!solution@{solution}}
+\index{solution@{solution}!Sudoku\+Solver@{Sudoku\+Solver}}
+\subsubsection[{\texorpdfstring{solution}{solution}}]{\setlength{\rightskip}{0pt plus 5cm}int Sudoku\+Solver\+::solution\mbox{[}9\mbox{]}\mbox{[}9\mbox{]}}\hypertarget{class_sudoku_solver_a1aca7fe43c36b2eb07a1357f76c728d4}{}\label{class_sudoku_solver_a1aca7fe43c36b2eb07a1357f76c728d4}
+\index{Sudoku\+Solver@{Sudoku\+Solver}!user@{user}}
+\index{user@{user}!Sudoku\+Solver@{Sudoku\+Solver}}
+\subsubsection[{\texorpdfstring{user}{user}}]{\setlength{\rightskip}{0pt plus 5cm}int Sudoku\+Solver\+::user\mbox{[}9\mbox{]}\mbox{[}9\mbox{]}}\hypertarget{class_sudoku_solver_a6e2f7ae7438f42979bcbd9cee385b24c}{}\label{class_sudoku_solver_a6e2f7ae7438f42979bcbd9cee385b24c}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Su\+Do\+Ku\+\_\+\+Solver/\hyperlink{sudokusolver_8h}{sudokusolver.\+h}\item 
+Su\+Do\+Ku\+\_\+\+Solver/\hyperlink{sudokusolver_8cpp}{sudokusolver.\+cpp}\end{DoxyCompactItemize}
