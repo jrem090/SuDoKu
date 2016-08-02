@@ -128,6 +128,7 @@ bool SudokuSolver::solve(int row, int col)
 
 bool SudokuSolver::checkUserSolution()
 {
+    bool isSolved = true;
     for(int i = 0; i < 9 ; i++)
     {
         int checksum_row = 0;
@@ -135,22 +136,26 @@ bool SudokuSolver::checkUserSolution()
 
         for(int j = 0; j < 9; j++)
         {
+            std::cout << user[i][j] + " ";
             if(user[i][j]<0 || user[i][j] > 9)
             {
-                return false;
+                //std::cout << "\n   FALSE \n";
+                isSolved = false;
             }
 
             if(user[j][i]<0 || user[j][i] > 9)
             {
-                return false;
+                isSolved = false;
+                //std::cout << "\n   FALSE \n";
             }
 
             checksum_row += user[i][j];
             checksum_col += user[j][i];
         }
+        std::cout << "\n";
         if(checksum_col != 45 || checksum_col != 45)
         {
-            return false;
+            isSolved = false;
         }
     }
 
@@ -167,11 +172,11 @@ bool SudokuSolver::checkUserSolution()
                 }
             }
             if(checksum_box != 45)
-                return false;
+                isSolved = false;
         }
     }
 
-    return true;
+    return isSolved;
 }
 
 void SudokuSolver::reset()
@@ -182,6 +187,7 @@ void SudokuSolver::reset()
         {
             input[i][j]    = 0;
             solution[i][j] = 0;
+            user[i][j]     = 0;
         }
     }
 

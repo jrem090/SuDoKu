@@ -58,23 +58,13 @@ void MainWindow::solveSudoku()
     {
         QString t;
         if(solver.solve(0,0))
-        {
-            //std::cout << "IT SHOULD BE SOLVED\n";
-            /*for(int i = 0; i < 9; i ++)
-            {
-                for(int j = 0; j<9; j++)
-                {
-                    std::cout << &solver.solution[i][j] << " ";
-                }
-                 std::cout << std::endl;
-            }*/
-    
+        {   
             for(int i = 0; i<9; i++)
             {
               for(int j =0; j< 9; j++)
               {
-    
                   t.setNum(solver.solution[i][j]);
+                  solver.user[i][j] = solver.solution[i][j];
                   //ui->tableWidget->item(i,j)->setData(11,t);
                   if(solver.input[i][j]==0)
                   {
@@ -100,7 +90,7 @@ void MainWindow::solveSudoku()
     {
         if(solver.checkUserSolution())
         {
-               ui->label->setText(QString("You Solved The Puzzle!"));
+            ui->label->setText(QString("You Solved The Puzzle!"));
         }
         else
         {
@@ -189,11 +179,12 @@ void MainWindow::tableEdit(int row, int column)
     else
     {
         //check if trying to overwrite given value
-        if(solver.solution[row][column]==0)
+        //if(solver.solution[row][column]==0)
+        if(true)
         {
             int test_int = ui->tableWidget->item(row,column)->data(0).toInt();
-            solver.setInput(row,column,test_int);
-            //ui->
+            //solver.setInput(row,column,test_int);
+            solver.input[row][column] = test_int;
             QFont font = ui->tableWidget->item(row,column)->font();
             font.setBold(false);
             ui->tableWidget->item(row,column)->setFont(font);
