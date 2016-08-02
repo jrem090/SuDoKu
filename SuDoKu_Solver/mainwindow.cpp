@@ -14,22 +14,23 @@ MainWindow::MainWindow(QWidget *parent) :
     {
       for(int j =0; j< 9; j++)
       {
-
-          bool isShaded = ((int)(i/3)+(int)(j/3))%2;
           QTableWidgetItem* item = new QTableWidgetItem();
           QFont font = item->font();
           font.setBold(true);
           item->setTextAlignment(Qt::AlignCenter);
           item->setFont(font);
+
+          bool isShaded = ((int)(i/3)+(int)(j/3))%2;
+
           if(isShaded)
               item->setBackgroundColor(QColor(225,225,225));
-        ui->tableWidget->setItem(i,j,item);
-
+          ui->tableWidget->setItem(i,j,item);
       }
     }
 
     ui->label->setAlignment(Qt::AlignCenter);
 
+    //Connect Qt Widgets/Signals to appropriate methods
     connect(ui->tableWidget, SIGNAL(cellChanged(int,int)),
                 this, SLOT(tableEdit(int, int)));
     connect(ui->solveButton, SIGNAL(pressed()),
@@ -41,6 +42,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->modeButton->setCheckable(true);
 
+    //Setup the Sudoku Solver
     solver = SudokuSolver();
     solver.reset();
 
@@ -56,35 +58,36 @@ void MainWindow::solveSudoku()
 {
     if(!user_mode)
     {
+        //Solve Given puzzle
         QString t;
-        if(solver.solve(0,0))
+        if(solver.solve(0,0)) //This calls the solve method
         {   
             for(int i = 0; i<9; i++)
             {
               for(int j =0; j< 9; j++)
               {
+                  //Set grid with solved values
                   t.setNum(solver.solution[i][j]);
                   solver.user[i][j] = solver.solution[i][j];
-                  //ui->tableWidget->item(i,j)->setData(11,t);
+
+                  //if value was inputed at start keep bold
                   if(solver.input[i][j]==0)
                   {
                       QFont font = ui->tableWidget->item(i,j)->font();
                       font.setBold(false);
                       ui->tableWidget->item(i,j)->setFont(font);
                   }
-                ui->tableWidget->item(i,j)->setData(Qt::DisplayRole,t);
-                //ui->tableWidget->item(i,j)->setData(Qt::UserRole, solver.solution[i][j]);
+                  ui->tableWidget->item(i,j)->setData(Qt::DisplayRole,t);
               }
             }
             ui->label->setText(QString("Sudoku Solved"));
-            ui->tableWidget->repaint();
-            //write solved
         }
         else
         {
              ui->label->setText(QString("Unable to Solve Sudoku"));
-            //write error
         }
+
+        ui->tableWidget->repaint(); //is this neccesary??
     }
     else
     {
@@ -184,7 +187,8 @@ void MainWindow::tableEdit(int row, int column)
         {
             int test_int = ui->tableWidget->item(row,column)->data(0).toInt();
             //solver.setInput(row,column,test_int);
-            solver.input[row][column] = test_int;
+            solver.user[row][column] = test_int;
+            std::cout << "INPUT: " << solver.user[row][column];
             QFont font = ui->tableWidget->item(row,column)->font();
             font.setBold(false);
             ui->tableWidget->item(row,column)->setFont(font);
