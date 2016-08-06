@@ -9,9 +9,12 @@ class SudokuSolver
 {
 public:
     SudokuSolver();
-
+    
+    ///Grid representing Hints/starting points
     int input[9][9];
+    ///Grid holding solved values
     int solution[9][9];
+    ///Grid holding user generated guesses
     int user[9][9];
 
     /**
@@ -68,7 +71,8 @@ public:
     void reset();
 
     /**
-     * @brief generatePuzzle This method generates a Sudoku Puzzle
+     * @brief generatePuzzle This method generates a Sudoku Puzzle in an
+     * EXTREMELY brute force manner
      */
     void generatePuzzle();
 

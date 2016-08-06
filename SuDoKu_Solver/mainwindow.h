@@ -17,14 +17,15 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     SudokuSolver solver;
-    //bool isValidEntry(int row, column);
-    bool user_mode;
+    bool is_user_mode;
 
 public slots:
     void solveSudoku();
     void clearPuzzle();
-    void tableEdit(int row, int column);
     void changeMode();
+    void loadFile();
+    void generatePuzzle();
+    void tableEdit(int row, int column);
 
 private:
     Ui::MainWindow *ui;

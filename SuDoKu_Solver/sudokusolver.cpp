@@ -1,5 +1,6 @@
 #include "sudokusolver.h"
 #include <iostream>
+#include <stdlib.h>
 
 SudokuSolver::SudokuSolver()
 {
@@ -189,6 +190,50 @@ void SudokuSolver::reset()
             solution[i][j] = 0;
             user[i][j]     = 0;
         }
+    }
+
+}
+
+void SudokuSolver::generatePuzzle()
+{
+    bool can_solve = false;
+    while(!can_solve)
+    {
+        reset();
+        //Very Brute force. Much gross
+        for(int i = 0; i < 25; i++)
+        {
+            int box_col = rand() % 9;
+            int box_row = rand() % 9;
+            int box_val = rand() % 9 +1;
+
+            //check cell is not already full. If not filled, fill with new value
+            if(input[box_row][box_col]==0)
+            {
+                //cycle through values until solvable value is found
+                while(!(checkBox(box_row,box_col,box_val) &&
+                        checkHorizontal(box_row,box_col,box_val) &&
+                        checkVertical(box_row,box_col,box_val)))
+                {
+                    box_val++;
+                    box_val = box_val % 9;
+                    if(box_val == 0)
+                        box_val++;
+                }
+
+                input[box_row][box_col]    = box_val;
+                solution[box_row][box_col] = box_val;
+            }
+        }
+        can_solve = solve(0,0);
+        for(int i = 0 ; i < 9; i++)
+        {
+            for(int j = 0; j < 9; j++)
+            {
+                solution[i][j]    = 0;
+            }
+        }
+
     }
 
 }

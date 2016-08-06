@@ -39,6 +39,10 @@ MainWindow::MainWindow(QWidget *parent) :
                 this, SLOT(clearPuzzle()));
     connect(ui->modeButton, SIGNAL(pressed()),
                 this, SLOT(changeMode()));
+    connect(ui->loadFileButton, SIGNAL(pressed()),
+                this, SLOT(loadFile()));
+    connect(ui->randomButton, SIGNAL(pressed()),
+                this, SLOT(generatePuzzle()));
 
     ui->modeButton->setCheckable(true);
 
@@ -46,7 +50,7 @@ MainWindow::MainWindow(QWidget *parent) :
     solver = SudokuSolver();
     solver.reset();
 
-    user_mode = false;
+    is_user_mode = false;
 }
 
 MainWindow::~MainWindow()
@@ -56,7 +60,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::solveSudoku()
 {
-    if(!user_mode)
+    if(!is_user_mode)
     {
         //Solve Given puzzle
         QString t;
@@ -104,7 +108,7 @@ void MainWindow::solveSudoku()
 
 void MainWindow::clearPuzzle()
 {
-    if(!user_mode)
+    if(!is_user_mode)
     {
         QString t = "";
         solver.reset();
@@ -124,8 +128,8 @@ void MainWindow::clearPuzzle()
 
 void MainWindow::changeMode()
 {
-    user_mode = !user_mode;
-    if(user_mode)
+    is_user_mode = !is_user_mode;
+    if(is_user_mode)
     {
         ui->solveButton->setText("Check Solution");
         ui->clearButton->setText("Restart Puzzle");
@@ -138,6 +142,30 @@ void MainWindow::changeMode()
 
 }
 
+void MainWindow::loadFile()
+{
+
+}
+
+void MainWindow::generatePuzzle()
+{
+    clearPuzzle();
+
+    solver.generatePuzzle();
+    QString t;
+    for(int i = 0; i < 9; i++)
+    {
+        for(int j = 0; j < 9; j++)
+        {
+            if(solver.input[i][j]!=0)
+            {
+                t.setNum(solver.input[i][j]);
+                ui->tableWidget->item(i,j)->setData(Qt::DisplayRole,t);
+            }
+        }
+    }
+}
+
 /**
  * @brief MainWindow::tableEdit
  * @param row
@@ -146,7 +174,7 @@ void MainWindow::changeMode()
  */
 void MainWindow::tableEdit(int row, int column)
 {
-    if(!user_mode)
+    if(!is_user_mode)
     {
         try
         {
