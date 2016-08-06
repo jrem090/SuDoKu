@@ -17,12 +17,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     SudokuSolver solver;
-<<<<<<< HEAD
     bool is_user_mode;
-=======
-
-    bool user_mode;
->>>>>>> debd226948e8e0471e33e99df792fd63697c4384
 
 public slots:
     /**
@@ -34,8 +29,6 @@ public slots:
      * @brief clearPuzzle
      */
     void clearPuzzle();
-<<<<<<< HEAD
-=======
 
     /**
      * @brief tableEdit
@@ -47,11 +40,17 @@ public slots:
     /**
      * @brief changeMode
      */
->>>>>>> debd226948e8e0471e33e99df792fd63697c4384
     void changeMode();
+
+    /**
+     * @brief loadFile
+     */
     void loadFile();
+
+    /**
+     * @brief generatePuzzle
+     */
     void generatePuzzle();
-    void tableEdit(int row, int column);
 
 private:
     Ui::MainWindow *ui;
