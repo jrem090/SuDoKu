@@ -21,6 +21,10 @@ public:
 
 public slots:
     /**
+     * @brief changeSkin
+     */
+    void changeSkin(int skin_id);
+    /**
      * @brief solveSudoku
      */
     void solveSudoku();

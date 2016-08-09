@@ -20,3 +20,10 @@ HEADERS  += mainwindow.h \
     sudokusolver.h
 
 FORMS    += mainwindow.ui
+
+DISTFILES += \
+    welcome_to_the_internet__please_follow_me_by_sharpwriter-d5buwfu (1).jpg \
+    welcome_to_the_internet__please_follow_me_by_sharpwriter-d5buwfu (1).jpg
+
+RESOURCES += \
+    sudoku.qrc

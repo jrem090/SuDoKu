@@ -7,18 +7,30 @@
     <x>0</x>
     <y>0</y>
     <width>605</width>
-    <height>774</height>
+    <height>750</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>SUDOKU</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow
+{
+
+}</string>
+  </property>
   <widget class="QWidget" name="centralWidget">
+   <property name="styleSheet">
+    <string notr="true">QWidget
+{
+}
+</string>
+   </property>
    <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>610</y>
+      <y>630</y>
       <width>581</width>
       <height>73</height>
      </rect>
@@ -139,22 +151,6 @@
      </item>
     </layout>
    </widget>
-   <widget class="QFrame" name="frame">
-    <property name="geometry">
-     <rect>
-      <x>9</x>
-      <y>9</y>
-      <width>171</width>
-      <height>111</height>
-     </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-   </widget>
    <widget class="QFrame" name="frame_2">
     <property name="geometry">
      <rect>
@@ -182,8 +178,7 @@
      <property name="styleSheet">
       <string notr="true">QTableWidget
 {
-	font: 75 12pt &quot;MS Shell Dlg 2&quot;;
-	
+	font: 75 15pt &quot;MS Shell Dlg 2&quot;;
 }</string>
      </property>
      <attribute name="horizontalHeaderVisible">
@@ -319,9 +314,9 @@ text-align: center;
     <property name="geometry">
      <rect>
       <x>240</x>
-      <y>710</y>
+      <y>690</y>
       <width>111</width>
-      <height>31</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="layoutDirection">
@@ -358,6 +353,28 @@ text-align: center;
      </property>
     </item>
    </widget>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>605</width>
+      <height>750</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <zorder>horizontalLayoutWidget</zorder>
+   </widget>
+   <zorder>frame</zorder>
+   <zorder>horizontalLayoutWidget</zorder>
+   <zorder>frame_2</zorder>
+   <zorder>label</zorder>
+   <zorder>comboBox</zorder>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">

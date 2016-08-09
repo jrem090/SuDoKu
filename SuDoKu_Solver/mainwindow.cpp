@@ -20,10 +20,12 @@ MainWindow::MainWindow(QWidget *parent) :
           item->setTextAlignment(Qt::AlignCenter);
           item->setFont(font);
 
-          bool isShaded = ((int)(i/3)+(int)(j/3))%2;
+          bool isShaded = (((int)(i/3)+(int)(j/3))+1)%2;
 
           if(isShaded)
-              item->setBackgroundColor(QColor(225,225,225));
+              item->setBackgroundColor(QColor(225,225,225,160));
+          else
+               item->setBackgroundColor(QColor(225,225,225,80));
           ui->tableWidget->setItem(i,j,item);
       }
     }
@@ -43,6 +45,8 @@ MainWindow::MainWindow(QWidget *parent) :
                 this, SLOT(loadFile()));
     connect(ui->randomButton, SIGNAL(pressed()),
                 this, SLOT(generatePuzzle()));
+    connect(ui->comboBox, SIGNAL(activated(int)),
+                this, SLOT(changeSkin(int)));
 
     ui->modeButton->setCheckable(true);
 
@@ -138,6 +142,32 @@ void MainWindow::changeMode()
     {
         ui->solveButton->setText("Solve");
         ui->clearButton->setText("Clear");
+    }
+
+}
+
+void MainWindow::changeSkin(int skin_id)
+{
+    switch(skin_id)
+    {
+        case 0:
+            ui->label->setText(QString("Default Skin"));
+            ui->tableWidget->setStyleSheet("");
+            //ui->frame->setStyleSheet("font: 75 15pt "MS Shell Dlg 2";";
+            ui->frame->setStyleSheet("font-size: 15px");
+            break;
+        case 1:
+            ui->label->setText(QString("Wood Skin"));
+            ui->tableWidget->setStyleSheet("border-image: url(:/Oak.jpg)");
+            ui->frame->setStyleSheet("border-image: url(:/Mahogany.jpg);font-size: 15px");
+            break;
+        case 2:
+            ui->label->setText(QString("Lolcat Skin"));
+            ui->tableWidget->setStyleSheet("border-image: url(:/welcome_to_the_internet__please_follow_me_by_sharpwriter-d5buwfu (1).jpg);");
+            ui->frame->setStyleSheet("border-image: url(:/NYAN.png);font-size: 15px");
+            break;
+        default:
+            break;
     }
 
 }
