@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QFileDialog>
 
 #include <iostream>
 
@@ -152,19 +153,19 @@ void MainWindow::changeSkin(int skin_id)
     {
         case 0:
             ui->label->setText(QString("Default Skin"));
-            ui->tableWidget->setStyleSheet("");
+            ui->tableWidget->setStyleSheet("font-size: 30px");
             //ui->frame->setStyleSheet("font: 75 15pt "MS Shell Dlg 2";";
-            ui->frame->setStyleSheet("font-size: 15px");
+            ui->frame->setStyleSheet("");
             break;
         case 1:
             ui->label->setText(QString("Wood Skin"));
-            ui->tableWidget->setStyleSheet("border-image: url(:/Oak.jpg)");
-            ui->frame->setStyleSheet("border-image: url(:/Mahogany.jpg);font-size: 15px");
+            ui->tableWidget->setStyleSheet("border-image: url(:/Oak.jpg);font-size: 30px");
+            ui->frame->setStyleSheet("border-image: url(:/Mahogany.jpg);");
             break;
         case 2:
             ui->label->setText(QString("Lolcat Skin"));
-            ui->tableWidget->setStyleSheet("border-image: url(:/welcome_to_the_internet__please_follow_me_by_sharpwriter-d5buwfu (1).jpg);");
-            ui->frame->setStyleSheet("border-image: url(:/NYAN.png);font-size: 15px");
+            ui->tableWidget->setStyleSheet("border-image: url(:/welcome_to_the_internet__please_follow_me_by_sharpwriter-d5buwfu (1).jpg);font-size: 30px;");
+            ui->frame->setStyleSheet("border-image: url(:/NYAN.png);");
             break;
         default:
             break;
@@ -174,7 +175,13 @@ void MainWindow::changeSkin(int skin_id)
 
 void MainWindow::loadFile()
 {
+    //QFileDialog dialog(this);
+    //dialog.setFileMode(QFileDialog::AnyFile);
+    QString filename = QFileDialog::getOpenFileName(this, tr("Open File"), ":/",tr("Text files (*.txt)"));
+    std::cout << "Filename: " << filename.toStdString() << "\n";
+    ui->label->setText(filename);
 
+    //run parser
 }
 
 void MainWindow::generatePuzzle()
