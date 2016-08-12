@@ -181,6 +181,27 @@ void MainWindow::loadFile()
     std::cout << "Filename: " << filename.toStdString() << "\n";
     ui->label->setText(filename);
 
+    if(solver.importSudokyFromFile(filename))
+    {
+        QString t;
+        for(int i = 0; i < 9; i++)
+        {
+            for(int j = 0; j < 9; j++)
+            {
+                if(solver.input[i][j]!=0)
+                {
+                    t.setNum(solver.input[i][j]);
+                    ui->tableWidget->item(i,j)->setData(Qt::DisplayRole,t);
+                }
+                else
+                {
+                    t ="";
+                    ui->tableWidget->item(i,j)->setData(Qt::DisplayRole,t);
+                }
+            }
+        }
+
+    }
     //run parser
 }
 

@@ -1,6 +1,8 @@
 #include "sudokusolver.h"
 #include <iostream>
 #include <stdlib.h>
+#include <QFile>
+#include <QTextStream>
 
 SudokuSolver::SudokuSolver()
 {
@@ -191,8 +193,56 @@ void SudokuSolver::reset()
             user[i][j]     = 0;
         }
     }
-
 }
+ bool SudokuSolver::importSudokyFromFile(QString filename)
+ {
+     reset();
+     QFile input_file(filename);
+      bool read_correctly = true;
+     if (input_file.open(QIODevice::ReadOnly | QIODevice::Text))
+     {
+         QTextStream in(&input_file);
+         QString line = in.readLine();
+
+
+         for(int i = 0; i < 9; i++)
+         {
+             if(line.isNull())
+             {
+                 read_correctly = false;
+                 break;
+             }
+             if(line.length()<9)
+             {
+                 read_correctly = false;
+                 break;
+             }
+             for(int j = 0; j < 9; j++)
+             {
+                 int value = line.at(j).digitValue();
+                 if(value > 0 && value < 10)
+                 {
+                     input[i][j]    = value;
+                     solution[i][j] = value;
+                 }
+                std::cout  << value << " ";
+             }
+             std::cout <<"\n";
+             line = in.readLine();
+         }
+     }
+
+     read_correctly = solve(0,0);
+     for(int i = 0 ; i < 9; i++)
+     {
+         for(int j = 0; j < 9; j++)
+         {
+             solution[i][j] = 0;
+         }
+     }
+
+     return read_correctly;
+ }
 
 void SudokuSolver::generatePuzzle()
 {

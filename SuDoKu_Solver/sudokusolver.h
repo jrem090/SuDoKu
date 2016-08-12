@@ -1,12 +1,15 @@
 #ifndef SUDOKUSOLVER_H
 #define SUDOKUSOLVER_H
 
+#include <QObject>
+
 /**
  * @brief The SudokuSolver class This method is responsible for managing the details
  * and methods of Sudoku
  */
 class SudokuSolver
 {
+
 public:
     SudokuSolver();
     
@@ -81,6 +84,13 @@ public:
      * @return returns true if the user solution is valid/correct
      */
     bool checkUserSolution();
+
+    /**
+     * @brief importSudokyFromFile
+     * @param filename
+     * @return
+     */
+    bool importSudokyFromFile(QString filename);
 };
 
 inline void SudokuSolver::setInput(int row, int col, int value)
