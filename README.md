@@ -14,6 +14,10 @@ dynamic build.
 To build a static version add the "-config static" flag to the arguments 
 in qmake. Also make a custom process that calls windeployqt.exe and
 specifies the build directory as an arguement.
+##MAC
+*Not attempted yet*
+##Linux
+*Not attempted yet*
 
 #Personal Significance
 
