@@ -80,15 +80,17 @@ public:
     void generatePuzzle();
 
     /**
-     * @brief checkUserSolution This method checks if the user solution is a valid solution
+     * @brief checkUserSolution This method checks if the user solution is a
+     * valid solution
      * @return returns true if the user solution is valid/correct
      */
     bool checkUserSolution();
 
     /**
-     * @brief importSudokyFromFile
-     * @param filename
-     * @return
+     * @brief importSudokuFromFile This method parses a file containing a
+     * Sudoku Puzzle
+     * @param filename QString holding filename to be parsed
+     * @return true if puzzle was parsed succesfully and is a valid puzzle
      */
     bool importSudokyFromFile(QString filename);
 };
