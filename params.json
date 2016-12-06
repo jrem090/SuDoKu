@@ -1,6 +1,6 @@
 {
   "name": "Sudoku",
   "tagline": "",
-  "body": "# SuDoKu\r\n## The Application\r\nThis application was made in Qt using c++ to create a fully functional Sudoku game and solver.\r\nThe application can generate puzzles, import puzzles from a tab-delimited input file, and have a user hand enter a puzzle.\r\nThe user can try to solve the puzzle, check if their solution is valid, or autosolve the puzzle\r\n\r\n![](https://github.com/jrem090/SuDoKu/blob/master/Capture.PNG?raw=true)",
+  "body": "# SuDoKu\r\n## The Application\r\nThis application was made in Qt using c++ to create a fully functional Sudoku game and solver.\r\nThe application can generate puzzles, import puzzles from a tab-delimited input file, and have a user hand enter a puzzle.\r\nThe user can try to solve the puzzle, check if their solution is valid, or autosolve the puzzle\r\n\r\n![](https://github.com/jrem090/SuDoKu/blob/master/Capture.PNG?raw=true)\r\n\r\n## Compiling\r\nThe recommended way to compile would be to open the project file in QtCreator(it should have the relevant Qt Libraries) and build and run inside the creator. ",
   "note": "Don't delete this file! It's used internally to help with page regeneration."
 }
